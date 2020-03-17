@@ -206,4 +206,36 @@
     \end{itemize}
     \item Since the $O(n \lg n)$ upper bounds on the running times for heapsort and merge sort match the $\Omega(n \lg n)$ worst-case lower bound, heapsort and merge sort are asymptotically optimal comparison sorts.
 \end{itemize}
+
+\section*{33 Computational Geometry}
+\subsection*{33.4 Finding the closest pair of points}
+\begin{itemize}
+    \item Consider the problem of finding the closest pair of points in a set \textit{Q} of $n \geq 2$ points.
+    \item The divide-and-conquer algorithm for this problem, has a running time described by $T(n) = 2T(n/2) + O(n)$
+\end{itemize}
+\textbf{The divide-and-conquer algorithm}
+\begin{center}
+    \includegraphics[width = 10 cm]{../entities/figure_33_11.png}
+\end{center}
+\begin{itemize}
+    \item Each recursive invocation of the algorithm takes as input a subset $P \subseteq Q$ and arrrays $X$ and $Y$, each of which contains all the points of the inpput subset \textit{P}. The points in array \textit{X} are sorted so that their \textit{x}-coordinates are monotonically increasing. Similarly, array \textit{Y} is sorted by monotonically increasing \textit{y}-coordinate.
+    \item A given recursive invocation with inputs $P$, $X$, and $Y$ first checks whether $|P| \leq 3$. If so, the invocation simply performs the brute-force method: try all $|P| \choose 2$ pairs of points and return the closest pair. If $|P| > 3$, the recursive invocation carries out the divide-and-conquer paradigm as follows:
+    \begin{itemize}
+        \item \textbf{Divide}: Find a line \textit{l} that bisects the point set \textit{P} into two equally sized sets $P_L$ and $P_R$. Divide the array \textit{X} into arrays $X_L$ and $X_R$, which contain the points of $P_L$ and $P_R$ respectively, sorted by monotonically increasing \textit{x}-coordinate. Similarly, divide the array \textit{Y} into arrays $Y_L$ and $Y_R$, which contain the points of $P_L$ and $P_R$ respectively, sorted by monotonically increasing \textit{y}-coordinate.
+        \item \textbf{Conquer}: Having divided \textit{P} into $P_L$ and $P_R$, make two recursive calls, one to find the closest pair of poitns in $P_L$ and the other to find the closest pair of points in $P_R$. The input to the first call are the subset $P_L$ and arrays $X_L$ and $Y_L$; the second call receives the inputs $P_R$, $X_R$ and $Y_R$. Let the closest-pair distances returned for $P_L$ and $P_R$ be $\delta_L$ and $\delta_R$, respectively, and let $\delta = \min(\delta_L, \delta_R)$
+        \item \textbf{Combine}: The closest pair is either the pair with distance $\delta$ found by one of the recursive calls, or it is a pair of points with one point in $P_L$ and the other in $P_R$. If a pair of points has distance less than $\delta$, both points of the pair must be within $\delta$ units of line \textit{l}. Thus, they both must reside in the $2\delta$-wide vertical strip centered at line \textit{l}. To find such a pair, we do the following:
+        \begin{enumerate}
+            \item Create an array $Y'$, which is the array \textit{Y} with all points not in the $2\delta$-wide vertical strip removed. The array $Y'$ is sorted by \textit{y}-coordinate, just as \textit{Y} is.
+            \item For each point \textit{p} in the array \textit{Y'}, try to find points in \textit{Y'} that are within $\delta$ units of \textit{p}. Only the 7 points in \textit{Y'} that follow \textit{p} need to be considered. Compute the distance from \textit{p} to each of these 7 points, and keep track of the closest-pair distance $\delta'$ found over all pairs of points in $Y'$
+            \item If $\delta' < \delta$, then the verical strip does indeed contain a closer pair than the recursive calls found. Return this pair and its distance $\delta'$. Otherwise, return the closest pair and its distance $\delta$ found by the recursive calls.
+        \end{enumerate} 
+    \end{itemize}
+\end{itemize}
+\textbf{Correctness}
+\begin{itemize}
+    \item By bottoming out the recursion when $|P| \leq 3$, we ensure that we never try to solve a subproblem consisting of only one point. 
+    \item We need only to check the 7 points following each point \textit{p} in array \textit{Y'}; suppose that at some level of the recursion, the closest pair of points is $p_L \in P_L$ and $p_R \in P_R$. Thus, the distance $\delta'$ between $p_L$ and $p_R$ is strictly less than $\delta$. Point $p_L$ must be on or to the left of line \textit{l} and less than $\delta$ units away. Similarly, $p_R$ is on or to the right of \textit{l} and less than $\delta$ units away. Moreover, $p_L$ and $p_R$ are within $\delta$ units of each other vertically. Thus, $p_L$ and $p_R$ are within a $\delta \times 2\delta$ rectangle centered at \textit{l}.
+    \item We next show that at most 8 points of \textit{P} can reside within this $\delta \times 2\delta$ rectangle. Consider the $\delta \times \delta$ square forming the left half of this rectangle. Since all points within $P_L$ are at least $\delta$ units apart, at most 4 points can reside within this square. Similarly, at most 4 points in $P_R$ can reside within the $\delta \time \delta$ square forming the right half of the rectangle. Thus, at most 8 points of \textit{P} can reside within $\delta \times 2 \delta$ rectangle.
+    \item Now, we can see why we need to check only the 7 points following each point in the array \textit{Y'}. Still assuming that the closest pair is $p_L$ and $p_R$, let us assume that $p_L$ precedes $p_R$ in array \textit{Y'}. Then, $p_R$ is in one of the 7 positions following $p_L$. Thus, we have shown the correctness of the closest-pair algorithm.
+\end{itemize}
 \end{document}
