@@ -1,0 +1,27 @@
+\documentclass{report}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+\title{Øvelser - Divide-and-Conquer}
+\author{André Oskar Andersen (wpr684)}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{4.3 - 1}
+\textbf{Show that the solution of $T(n) = T(n - 1) + n$ is $O(n^2)$}: \\
+Vi gætter på, at $T(n) = O(n^2)$ og skal derfor vise, at $T(n) \leq cn^2$:
+$$T(n) = T(n - 1) + n \leq c(n - 1)^2 + n$$
+$$= C(n^2 + (-1)^2 - 2n) + n = cn^2 - 2cn + c + n$$
+$$ = cn^2 + c + n(-2c + 1) \leq cn^2), \text{for $c > \frac{1}{2}$}$$
+
+\section*{4.3 - 2}
+\textbf{Show that the solution of $T(n) = T(\left \lceil{n/2}\right \rceil) + 1$ is $O(\lg n)$}: \\
+Vi gætter på, at $T(n) = O(\lg n)$ og skal derfor vise $T(n) \leq c \lg n$:
+$$T(n/2) + 1 \leq c(\lg(n/2)) + 1 $$
+$$ = c(\lg n - \lg 2) + 1 = c(\lg n - 1) + 1 $$
+$$ = c \lg n - c + 1 \leq c \lg n \text{ for $c \geq 1$}$$
+
+\end{document}
