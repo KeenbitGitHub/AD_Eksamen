@@ -1,0 +1,54 @@
+\documentclass{report}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\title{Eksamensnoter - Disjoint Sets and Plane Sweep}
+\author{André Oskar Andersen (wpr684)}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{21 Data Structures for Disjoint Sets}
+\begin{itemize}
+    \item Some applications involve grouping $n$ distinct elements into acollection of disjoint sets. These applications often need to perform two operations in particular: finding the unique sets that contains a given element and uniting two sets.
+\end{itemize}
+
+\subsection*{21.1 Disjoint-set operations}
+\begin{itemize}
+    \item A \textit{disjoint-set data structure} maintains a collection $\mathcal{S} = \{S_1, S_2, ..., S_k\}$ of disjoint dynamic sets. We identify each set by a \textit{representative}, which is some member of thes et. If we ask for the representative of a dynamic set twice without modifying the set between the requests, we get the same anaswer both times.
+    \item We represent each element of a set by an object. Letting $x$ denote an object, we wish to support the following operations:
+    \begin{itemize}
+        \item \texttt{MAKE-SET($x$)}: creates a new set whose only member (and thus representative) is $x$. Since the sets are disjoint, we require that $x$ not already be in some other set
+        \item \texttt{UNION($x$, $y$)}: unites the dynamic sets that contain $x$ and $y$, into a new set that is the union of these two sets.
+        \item \texttt{FIND-SET($x$)}: returns a pointer to the representative of the (unique) set containg $x$
+    \end{itemize}
+    \item Since the sets are disjoint, each \texttt{UNION} operation reduces the number of sets by one. After $n - 1$ \texttt{UNION} operations, therefore, only one set remains. The number of \texttt{UNION} operations is thus at most $n - 1$.
+\end{itemize}
+\textbf{An application of disjoint-set data structures}
+\begin{itemize}
+    \item One of the many applications of disjoint-set data structures arises in determinening the conencted components of an undirected graph.
+    \item The procedure \texttt{CONNECTED-COMPONENTS} that follows uses the disjoint-set operations to compute the connected components of a graph. Once \texttt{CONNECTED-COMPONENTS} has preprocessed the graph, the procedure \texttt{SAME-COMPONENTS} answers queries about whether two vertices are i nthe same connected component.
+\end{itemize}
+
+\subsection*{21.2 Linked-list representation of disjoint sets}
+\begin{itemize}
+    \item A simple way to implement a disjoint-set data structure: each set is represented by its own linked list. The object for each set has attributes \textit{head}, pointing to the first object i nthe list, and \textit{tail}, pointing to the last object. Each object in the list contains a set member, a pointer to the next object in the list, and a pointer back to the set object. Within each linked list, the objects may appear in any order. The representative is the set member in the first object in the list.
+    \item Both \texttt{MAKE-SET} and \texttt{FIND-SET} requires $O(1)$ time.
+    \item To carry out \texttt{MAKE-SET($x$)}, we create a new linked list whose only object is $x$
+    \item For \texttt{FIND-SET($x$)}, we just follow the pointer from $x$ back to its set object and the nreturn the member in the object that \textit{head} points to.
+\end{itemize}
+\textbf{A simple implementation of union}
+\begin{itemize}
+    \item The simplest implementation of the \texttt{UNION} operation using the linked-list set representation takes significantly more time than \texttt{MAKE-SET} or \texttt{FIND-SET}. We perform \texttt{UNION($x$, $y$)}, by appending $y$'s list onto the end of $x$'s list. The reåresentative of $x$'s list becomes the representative of the resulting set.
+\end{itemize}
+\subsection*{21.3 Disjoint-set forests}
+\begin{itemize}
+    \item In a faster implementation of disjoint sets, we represent sets by rooted trees, with each node containing one member and each tree representing one set.
+    \item In a \textit{disjoint-set forest} each member points only to its parent. The root of each tree contains the representative and is its own parent.
+    \item A \texttt{MAKE-SET} operations simply creates a tree with just one node. We perform a \texttt{FIND-SET} operation by following parent pointers until we find the root of the tree. A \texttt{UNION} operation causes the root of one tree to point to the root of the other
+\end{itemize}
+
+\end{document}

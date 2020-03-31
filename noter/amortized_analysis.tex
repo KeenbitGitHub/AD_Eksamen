@@ -10,7 +10,7 @@
 \begin{document}
 \maketitle
 
-\section{17 Amortized Analysis}
+\section*{17 Amortized Analysis}
 \begin{itemize}
     \item In an \textit{amortized analysis}, we average the time required to perform a sequence of data-strcuture operations over all the operations performed. With amortized analyis, we can show that the average cost of an operation is small, if we average over a sequence of oeprations, even though a single operation within the sequence might be expensive.
 \end{itemize}
@@ -22,8 +22,8 @@
 \begin{itemize}
     \item In our first example of aggregate analysis, we analyze stacks that have been augmented with a new operation.
     \item The total cost of a sequence of $n$ \texttt{PUSH} and \texttt{POP} operations is $n$, and the actual running time for $n$ operations is therefore $\Theta(n)$
-    \item Now wwe add the stack operation \texttt{MULTIPOP(S, k)}, which removes the $k$ top objhects of stack $S$, popping the entire stack if the stack contains fewer than $k$ objects. The total cost of \texttt{MULTIPOP} is $\min(s, k)$, and the actual running time is a linear function of this cost.
-    \item Any seqyence of $n$ \texttt{PUSH}, \texttt{POP} and \texttt{MULTIPOP} operations on an initially empty stack can cost at most $O(n)$, why?. We can pop each object fro mthe stack at most once for each time we have pushed it onto the stack. therefore, the number of times that \texttt{POP} can be called on an nonempty stack, including calls within \texttt{MULTIPOP}, is at most the number of \texttt{PUSH} operations, which is at most $n$. For any value of $n$, any sequence of $n$ \texttt{PUSH}, \texttt{POP}, and \texttt{MULTIPOP} operations takes a total of $O(n)$time. The average cost of an operation is $O(n)/n = O(1)$. In aggregate analysis we assign the amortized cost of each operation to be the average cost. In this example, therefore, all three stack operations have an amortized cost of $O(1)$.
+    \item Now we add the stack operation \texttt{MULTIPOP(S, k)}, which removes the $k$ top objhects of stack $S$, popping the entire stack if the stack contains fewer than $k$ objects. The total cost of \texttt{MULTIPOP} is $\min(s, k)$, and the actual running time is a linear function of this cost.
+    \item Any sequence of $n$ \texttt{PUSH}, \texttt{POP} and \texttt{MULTIPOP} operations on an initially empty stack can cost at most $O(n)$, why?. We can pop each object from the stack at most once for each time we have pushed it onto the stack. therefore, the number of times that \texttt{POP} can be called on an nonempty stack, including calls within \texttt{MULTIPOP}, is at most the number of \texttt{PUSH} operations, which is at most $n$. For any value of $n$, any sequence of $n$ \texttt{PUSH}, \texttt{POP}, and \texttt{MULTIPOP} operations takes a total of $O(n)$time. The average cost of an operation is $O(n)/n = O(1)$. In aggregate analysis we assign the amortized cost of each operation to be the average cost. In this example, therefore, all three stack operations have an amortized cost of $O(1)$.
 \end{itemize}
 \subsection*{17.2 The accounting method}
 \begin{itemize}
