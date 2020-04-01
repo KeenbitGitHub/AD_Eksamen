@@ -182,9 +182,34 @@ Hertil bliver kanten med vægt 8 betragtet. Da denne kant ikke resulterer i noge
 \begin{center}
     \includegraphics[height = 5 cm]{../entities/kruskal8}
 \end{center}
+Herefter bliver kanten med vægt 10 betragtet:
+\begin{center}
+    \includegraphics[height = 5 cm]{../entities/kruskal10}
+\end{center}
+Da denne kant vil resultere i en cyklus - nemlig $(a, b), (b, e), (e, f), (f, d), (d, c), (c, a)$, bliver den ikke tilføjet til den aktuelle minimum udspændede skov:
+\begin{center}
+    \includegraphics[height = 5 cm]{../entities/kruskal11}
+\end{center}
 Alt i alt ser det minimum udspændende træ ud som følgende:
 \begin{center}
     \includegraphics[height = 5 cm]{../entities/kruskal9}
 \end{center}
+
+\newpage
+
+\subsection*{Del 4.2}
+Det kan tydeligt vises ved et eksempel, at hvis væten af kanten $(d, f)$ ændres til 6, så vil $T$ ikke længere være et MST i $H$. Jeg vælger her at sprænge frem til den iteration, hvor kant $(d, f)$ ikke bliver taget med i den aktuelle minimum udspændede skov:
+\begin{center}
+    \includegraphics[height = 5 cm]{../entities/new_kruskal1}
+\end{center}
+Det er tydeligt at se her, at kanten $(d, f)$ ikke vil blive inkluderet i MST i $H$, idet vil så vil have cyklen $(c, d), (d, f), (f, e), (e, c)$. Derfor ender MST i $H$ ud med at være:
+\begin{center}
+    \includegraphics[height = 5 cm]{../entities/new_kruskal2}
+\end{center}
+vil ikke er lig $T$
+
+\newpage
+
+
 
 \end{document}
