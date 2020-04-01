@@ -11,7 +11,7 @@
 \begin{document}
 \maketitle
 
-% ############################# OPGAVE 1
+% ############################# OPGAVE 1 ####################################
 
 \section*{Opgave 1}
 \subsection*{Del 1.1}
@@ -23,5 +23,18 @@ Ved brugen af binære heaps har Prims algoritme en køretid på $O(E \lg V)$. An
 Dijkstras køretid afhænger af hvordan \textit{min-priorty} køen bliver implementeret - implementeres den ved hjælp af Fibonnaci heaps, bliver køretiden $O(V \lg V + E)$ - meget bedre end andre implementationers køretid, som for eksempel $O(V^2)$. Dette skyldes, at algoritmen generelt kalder \texttt{DECREASE-KEY} mange flere gange, end algoritmen kalder \texttt{EXTRACT-MIN}.
 
 \newpage
+
+\subsection*{Del 1.2}
+Jeg har følgende algoritme for \texttt{INCREMENT}:
+\begin{verbatim}
+INCREMENT(A):
+    i = 0
+    while (i < A.length and A[i] == 9):
+        A[i] = 0
+        i += 1
+    if (i < A.length):
+        A[i] += 1
+\end{verbatim}
+Algoritmen fungerer ved at iterere igennem array $A$ indtil der findes en indgang der ikke er lig 9 - alle indgange op til dette sættes til 0, idet at lægge 1 til 9 resulterer i 0. Herefter lægges der 1 til den første værdi der ikke er lig 9, idet der herved er tale om et \textit{carry over} fra det forrige ciffer.
 
 \end{document}
