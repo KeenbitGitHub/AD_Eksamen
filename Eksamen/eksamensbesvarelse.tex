@@ -1,6 +1,7 @@
 \documentclass{report}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{graphicx}
 
 \title{Algoritmer og Datastrukturer Eksamen}
@@ -206,7 +207,7 @@ Det er tydeligt at se her, at kanten $(d, f)$ ikke vil blive inkluderet i MST i 
 \begin{center}
     \includegraphics[height = 5 cm]{../entities/new_kruskal2}
 \end{center}
-vilket ikke er lig $T$
+hvilket ikke er lig $T$
 
 \newpage
 
@@ -219,5 +220,15 @@ Her er det tydeligt at se, at kanten $(b, c)$ faktisk bliver tilføjet til den a
 \begin{center}
     \includegraphics[height = 5 cm]{../entities/new_new_kruskal2}
 \end{center}
-vilket ikke er lig $T$.
+hvilket ikke er lig $T$.
+
+\newpage
+
+\subsection*{Del 4.4}
+Egenskaben lyder:
+\begin{quote}
+    Lad $T_1$ og $T_2$ betegne de to træer der opstår, hvis man fjerner $x$ fra $M$. Herved har vi, at for alle knuder, $u$ og $v$, der forbinder $T_1$ og $T_2$ skal vi have, at $k \leq w((u, v))$. 
+\end{quote}
+Da $x$ dog var med i $M$ må den altså være den kant der forbinder $T_1$ og $T_2$ med lavest vægt. Det vil altså sige, at egenskaben kan forkortest til uligheden 
+$$k \leq w(x)$$. \\
 \end{document}
