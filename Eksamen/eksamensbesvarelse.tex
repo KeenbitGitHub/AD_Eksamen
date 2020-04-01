@@ -1,0 +1,27 @@
+\documentclass{report}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[margin=1.5in]{geometry}
+
+\title{Algoritmer og Datastrukturer Eksamen}
+\author{Eksamensnummer: 137}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+% ############################# OPGAVE 1
+
+\section*{Opgave 1}
+\subsection*{Del 1.1}
+En Fibonacci heap, $H$, er en mængde af rodfæstede træer der overholder \textit{min-heap property}'en - at nøglen i en knude er større eller lig med forældrens nøgle, hvilket resulterer i, at én af knuderne har den mindste nøgle med den mindste værdi i hele heap'en - den såkaldte  \textit{minimum node}. Vi tilgår en Fibonnaci heap med pointer'en \textit{H.min}, der pejer til denne  \textit{minimum node}. Træernes rødder har pejerene \textit{left} og \textit{right} der henholdsvis pejer til rødderne for træerne til højre og venstre for sig selv - dette skaber den såkaldte \textit{root list}. \\
+Alle knuder har en pejer, \textit{p}, til sin forældre og en pejer, \textit{child}, til ét af sine børn; børnene er sammensat i en \textit{circular, doubly linked list}, hvilket herved gør det muligt for forældren at tilgå enhver af sine børn. Alle børn har pejerne \textit{left} og \textit{right}, der ved hjælp af den \textit{circular, doubly linked list} pejer til barnets højre og venstre søskene. Herudover har alle knuder attributen \textit{degree}, der beskriver antallet af børn som knuden har. \\
+Herudover har alle knuder attributen \textit{mark}, der indikerer om en knude har mistet et barn siden knuden selv var lavet til et barn af en anden knude - dog bliver rodknuder ikke markeret, hvis når den mister et barn. En knude bliver \textit{unmarked} når den bliver lavet til et barn af en anden knude (hvilket kan ske når den mister sit andet barn), samt når den bliver skabt. \\
+Fibonnaci heaps er en meget effektiv datastruktur, idet størstedelen af operationerne i amortiseret køretid kører i konstant tid - de eneste operationer der ikke kører i konstant tid er \texttt{EXTRACT-MIN} og \texttt{DELETE}, der har køretiderne $O(\lg n)$ og $O(\lg n)$ amortiseret køretid. Herved egner datastruktureren sig godt til algoritmer der anvender datastrukturerens operationer mange gange - og særlig godt, hvis \texttt{EXTRACT-MIN} og \texttt{DELETE} ikke anvendes særlig mange gange. Dette ses eksempelvis fra pensum i Prims algoritme og i Dijkstras algoritme. \\
+Ved brugen af binære heaps har Prims algoritme en køretid på $O(E \lg V)$. Anvender algoritmen dog Fibonnaci heaps istedet, får algoritmen en køretid på $O(E + V \lg V)$, hvilket er bedre end implementationen med binære heaps, hvis tilfældet er, at antallet af knuder er meget mindre end antallet af kanter. \\
+Dijkstras køretid afhænger af hvordan \textit{min-priorty} køen bliver implementeret - implementeres den ved hjælp af Fibonnaci heaps, bliver køretiden $O(V \lg V + E)$ - meget bedre end andre implementationers køretid, som for eksempel $O(V^2)$. Dette skyldes, at algoritmen generelt kalder \texttt{DECREASE-KEY} mange flere gange, end algoritmen kalder \texttt{EXTRACT-MIN}.
+
+\newpage
+
+\end{document}
