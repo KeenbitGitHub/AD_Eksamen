@@ -230,5 +230,8 @@ Egenskaben lyder:
     Lad $T_1$ og $T_2$ betegne de to træer der opstår, hvis man fjerner $x$ fra $M$. Herved har vi, at for alle knuder, $u$ og $v$, der forbinder $T_1$ og $T_2$ skal vi have, at $k \leq w((u, v))$. 
 \end{quote}
 Da $x$ dog var med i $M$ må den altså være den kant der forbinder $T_1$ og $T_2$ med lavest vægt. Det vil altså sige, at egenskaben kan forkortest til uligheden 
-$$k \leq w(x)$$. \\
+$$k \leq w(x)$$ \\
+Det første tilfælde kan bevises ved et modstrids bevis: \\
+Vi antager, at der findes en sti i $G$ der forbinder $T_1$ og $T_2$ med en samlet vægt, der er lavere end $w(x)$. Men da vi ved, at $x$ er med i $M$ og $M$ er et MST, så er dette ikke muligt, og $w(x)$ må altså være den maksimale vægt en sti kan have der forbinder $T_1$ og $T_2$. Herved, hvis $M$ er et MST i $G'$, så må $k \leq w(x)$ gælde. \\
+Det andet tilfælde kan der argumenteres for, idet det er muligt for generiske MST-algoritme at finde $M$ i $G'$, idet den kan lave de samme \textit{cuts} der først til $M$ i $G$ - pånær \textit{cut}'et der førte til at tilføje kant $x$ til $M$. Hertil mangler der altså kun et \textit{cut} der forbinder de to træer $T_1$ og $T_2$. Laves der et cut over alle kanterne der forbinder de to træer, vil $x$ altså være det \textit{cut} med den laveste vægt, derved også være en \textit{light edge} og derved blive tilføjet til $M$. Ergo er det muligt for den generiske MST-algortime at finde $M$ i $G'$.
 \end{document}
