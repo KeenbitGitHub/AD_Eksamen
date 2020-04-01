@@ -120,4 +120,9 @@ Alt i alt har de forskellige bogstaver følgende prefix-kode:
 \subsection*{Del 3.3}
 Vi kan implementere algoritmen, ved at skabe et \textit{min-heap}, hvor nøglerne i knuderne er frekvenserne af de forskellige bogstaver - dette har en køretid på $\Theta(n)$. Herved kan vi finde det mindste element i $O(\lg n)$. Da vi iterer over alle knuderne gøres dette $\Theta(n)$ gange. I alt har algoritmen altså en køretid på $O(n \lg n)$.
 
+\newpage
+
+\subsection*{Del 3.4}
+Ja, $B(T) = \sum_{c \in C} c.freq \cdot d_T(c)$ udtrykker stadig længden af den komprimerede streng. Dette skyldes, at for $c \in C$ beskriver $c.freq$ antallet af gange vi går ned igennem træet til bladet hvor knuden $c$ befinder sig i, samt $d_T(c)$ beskriver hvor langt ned der er til dette bladet. Summeres dette over alle bogstaver, har vi altså hvor langt vi skal bruge for at komme til ethvert bogstav, samt hvor mange gange vi skal ned af træet, for at komme til hvert bogstav.
+
 \end{document}
