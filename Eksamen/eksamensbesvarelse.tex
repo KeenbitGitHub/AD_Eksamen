@@ -40,8 +40,24 @@ Algoritmen fungerer ved at iterere igennem array $A$ indtil der findes en indgan
 \newpage
 
 \subsection*{Del 1.3}
-Worst-case for algoritmen er hvis algoritmen får givet et array, hvor alle indgange er 9, altså hvor $A[i] = 9$ for $i = 0, 1, ..., 9$. Herved er while-loop'et i linje 2 nødt til at itere igennem hele array'et. \\
+Worst-case for algoritmen er hvis algoritmen får givet et array, hvor alle indgange er 9, altså hvor $A[i] = 9$ for $i = 0, 1, ..., 9$. Herved er while-loop'et i linje 2 nødt til at itere igennem hele array'et, hvilket giver en køretid på $O(k)$. \\
 Acconting metoden til at vise den amortiserede køretid for \texttt{INCREMENT} kan vises, ved at lade de amortiserede omkostninger for at sætte et ciffer til 1, til at koste 10 credits - 1 credit bruges til at lægge 1 til cifferet, hvorimod de 9 overskydende gemmes på cifferet, som bruges til at betale for de næste 9 gange der skal lægges 1 til dette ciffer. Herved vil ethvert tal der ikke er lig 0, have nok credit til at sættes til 0 og der er derved ingen omkostninger ved at sætte et ciffer til 0, idet vi kan bruge de restende credit der ligger på cifferen. \\
 Hertil kan vi bestemme den amortiserede køretid; at lægge 1 til et ciffer, udover hvis dette ciffer giver 1, bliver betalt af det credit der ligger på cifferet. Algoritmen lægger højst 1 til ét ciffer, i linje 6, hvilket betyder, at de amortiserede omkostninger maksimalt kan koste 9 (hvis cifferet går fra 0 til 1). Antallet af ciffer med credit kan ikke være negativt, hvilket betyder, at credit'et aldrig vil være negativt. Herved, ved kald til $n$ kald til \texttt{INCREMENT}, er de amortiserede omkostninger lig $O(n)$.
+
+\newpage
+
+% ################################### OPGAVE 2 ############################
+
+\section*{Opgave 2}
+\subsection*{Del 2.1}
+Dynamisk Programming minder meget om \textit{Divide-and-Conquer}, idet begge paradigmer løser et problem, ved at dele problemet op i delproblmmer, efterfulgt af at løse disse delproblemer og tilsidst at kombinere disse delproblemer. Modsat problemer i \textit{Divide-and-Conquer}, så overlapper delproblemerne. Dette ses eksempelvis ved beregning af et Fibonacci tal:
+\begin{center}
+    \includegraphics[height = 4 cm]{../entities/DP_fibonacci.PNG}
+\end{center}
+I dette eksempel er det tydeligt, at problemet består af overlappende delproblemer, idet Fibonacci-tallet $F_2$ skal udregnes 2 gange, for at udregne Fibonacci-tallet $F_4$. Ideen med Dynamisk Programmering er hertil at undgå at løse de overlappende delproblemer flere gange. \\
+Ved Dynamisk Programmering er der to forskellige fremgangsmåder til, at løse et problem; \textit{top-down} og \textit{bottom-up}. \\
+Ved \textit{top-down} løses problemerne rekursivt. Når et delproblem er løst, gemmes løsningen i hukommelsen og kan nemt slås op, hvis det samme delproblem er mødt igen senere. \\
+Ved \textit{bottom-up} løses delproblemerne efter stigende størrelse efterfulgt af at gemme løsningen til disse delproblemer i hukommelsen. Herved, når et algoritmen støder på et nyt delproblem, er de delproblemer som den består af allerede løst. \\
+Sammenlignes de to fremgangsmåder, så er det tydeligt, at de har sine fordele. \textit{top-down} har den fordel, at den kun løser den delproblemer der er nødvendige for de aktuelle problem - modsat \textit{bottom-up}, der løser alle delproblemer. På den anden side, så undgår \textit{top-down} rekursion, hvilket generelt resulterer i mindre konstantfaktorer i køretiden.
 
 \end{document}
