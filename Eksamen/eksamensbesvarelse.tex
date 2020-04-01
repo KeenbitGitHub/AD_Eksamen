@@ -2,7 +2,6 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{graphicx}
-\usepackage[margin=1.5in]{geometry}
 
 \title{Algoritmer og Datastrukturer Eksamen}
 \author{Eksamensnummer: 137}
@@ -63,7 +62,22 @@ Sammenlignes de to fremgangsmåder, så er det tydeligt, at de har sine fordele.
 \newpage
 
 \subsection*{Del 2.2}
-Det er tydeligt, at rekursionsformlen er korrekt, idet den kører rekursivt igennem alle de mulige snit som der kan lægges på pladen og hertil finder ud af hvilke af disse snit der giver den største fortjeneste. Hertil finder rekursionsformlen altså den optimale løsning til alle de mulige delproblemer, som den finder ved at finde den optimale løsning til alle deldelproblemerne osv... Herved opnår problemet optimal delstruktur. \\
+Det er tydeligt, at rekursionsformlen er korrekt, idet den kører rekursivt igennem alle de mulige snit som der kan lægges på pladen og hertil finder ud af hvilke af disse snit der giver den største fortjeneste. Hertil finder rekursionsformlen altså den optimale løsning til alle de mulige delproblemer, som den finder ved at finde den optimale løsning til alle de mulige deldelproblemerne osv... Herved opnår problemet optimal delstruktur. \\
 Hertil er det muligt at se, at $r_{b, h, s} = p_{b, h}$ når $b = h = 1$, idet det ikke er muligt at lægge et snit i pladen, så delpladerne har en heltalsbredde og heltalshøjde, samt $1 < b$ og $1 < h$. Det vil altså sige, at den eneste muligt i rekursionsformlen er, at returnere fortjenesten når der ikke skæres i pladen, altså, når $r_{b, h, s} = p_{b, h}$.
 
+\newpage
+
+\subsection*{Del 2.3}
+\begin{verbatim}
+CUT-PLATE(p, b, h, s):
+    MANGLER
+\end{verbatim}
+
+\newpage
+
+\section*{Opgave 3}
+\subsection*{Del 3.1}
+Grådige Algoritmer er en type af algoritmer, der foretager sig den optimale handling i det nuværende tidspunkt, i håb om, at dette fører til det optimale løsning til hele problemet. Ligesom ved Dynamisk Programmering, så afhænger delproblemerne af andre delproblemers løsning, forskellen ligger dog i, at ved Dynamisk Programmering, foretages der et valg efter delproblemerne er løst, hvorimod en Grådige Algoritmer først foretager sig et valg og derefter løser delproblemerne. Samtidigt gælder der også, at efter hvert grådige valg, er der kun ét delproblem tilbage. Oftest er grådige algoritmer hurtigere end algoritmer fra Dynamisk Programmering, dog findes der problemer, som Dynamisk Programmering kan løse, som en Grådig Algoritme ikke kan løse. \\ 
+Det kan være svært, at forudse, om et problem kan løses ved hjælp af en Grådig Algoritme. Dog, hvis et problem opnår \textit{greedy-choice property} og \textit{optimal substructure} er det muligt at løse problemet ved hjælp af en Grådig algoritme. \\
+\textit{Greedy-choice property} går i sin helhed ud på, at der findes en optimal løsning til problemet, der indeholder det grådige valg. Modsat, så går \textit{optimal substructure} ud på, at hvis det grådige valg er en del af den optimale løsning til problemet, så er den optimale løsning til problemet bestående af det grådige valg og den optimale løsning til delproblemet efter det grådige valg. Alt i alt, så vil en kombination af \textit{optimal substructure} og \textit{greedy choice property} medføre, at den Grådige Algoritme finder en optimal løsning til problemet.
 \end{document}
