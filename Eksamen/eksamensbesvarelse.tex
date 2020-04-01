@@ -125,4 +125,17 @@ Vi kan implementere algoritmen, ved at skabe et \textit{min-heap}, hvor nøglern
 \subsection*{Del 3.4}
 Ja, $B(T) = \sum_{c \in C} c.freq \cdot d_T(c)$ udtrykker stadig længden af den komprimerede streng. Dette skyldes, at for $c \in C$ beskriver $c.freq$ antallet af gange vi går ned igennem træet til bladet hvor knuden $c$ befinder sig i, samt $d_T(c)$ beskriver hvor langt ned der er til dette bladet. Summeres dette over alle bogstaver, har vi altså hvor langt vi skal bruge for at komme til ethvert bogstav, samt hvor mange gange vi skal ned af træet, for at komme til hvert bogstav.
 
+\newpage
+
+\subsection*{Del 3.5}
+Ved beviset skal der vises, at det grådige valg resulterer i en optimal løsning, hvor det grådige valg består af at finde de tre knuder med lavest frekvens, lave dem til søskende samt lade dem være de knuder med den største dybde. \\
+Til beviset lader vi $C$ være et alfabet, hvor hvert bogstav $c \in C$ har frekvensen $c.freq$. Hertil lader vi $x$, $y$ og $z$ være de to bogstaver i $C$ med lavest frekvens. Hertil lader vi $a$, $b$ og $c$ være de bogstaver og søskende med maksimum dybde i et træ $T$ der repræsenterer et optimalt \textit{prefix code}. \\
+Vi kan lave $T$ om til $T'$, ved at bytte om på knuderne $a$ og $x$, hvilket vi kan lave om til $T''$ ved at bytte om på knuderne $b$ og $y$, hvilket vi så kan lave om til $T'''$, ved at byte om på knuderne $c$ og $z$. Dette er det grådige valg og resulterer i, at $x$, $y$ og $z$ nu er søskende og har maksimal dybde. \\
+Vi kan nu se, at $B(T) \geq B(T')$:
+$$B(T) - B(T')$$
+$$= \sum_{c \in C} c.freq \cdot d_T(c) - \sum_{c \in C} c.freq \cdot d_{T'} (c)$$
+$$= x.freq \cdot d_T(x) + a.freq \cdot d_T(a) - x.freq \cdot d_{T'} - a.freq \cdot d_{T'}(a)$$
+$$= x.freq \cdot d_T(x) + a.freq \cdot d_T(a) - x.freq \cdot d_T(a) - a.freq \cdot d_T(x)$$
+$$= (a.freq - x.freq)(d_T(a) - d_T(x)) \geq 0$$
+hvor den sidste linje gælder, idet både $(a.freq - x.freq)$ og $(d_T(a) - d_T(x))$ resulterer i et positivt tal, idet $a.freq > x.freq$, da $x$ er det bogstav med lavest frekvens, samt $d_T(a) > d_T(x)$ idet $a$ er det blad med højst dybde i træet $T$. Ligeledes gør det ikke nogen forskel, at bytte om på $y$ og $b$, samt $z$ og $c$, og derved er $B(T') - B(T'')$ og $B(T'') - B(T''')$ begge ikke negative. Herved har vi altså, at $B(T''') \leq B(T)$, men da $T$ repræsenterer et optimalt \textit{prefix code}, må vi altså have $B(T''') = B(T)$. Derved må træet $T'''$, hvor $x$, $y$ og $z$ er søskende knuder i maksimal dybde med højst frekvens, altså være et optimalt træ.
 \end{document}
