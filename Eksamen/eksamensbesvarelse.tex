@@ -233,5 +233,14 @@ Da $x$ dog var med i $M$ må den altså være den kant der forbinder $T_1$ og $T
 $$k \leq w(x)$$ \\
 Det første tilfælde kan bevises ved et modstrids bevis: \\
 Vi antager, at der findes en sti i $G$ der forbinder $T_1$ og $T_2$ med en samlet vægt, der er lavere end $w(x)$. Men da vi ved, at $x$ er med i $M$ og $M$ er et MST, så er dette ikke muligt, og $w(x)$ må altså være den maksimale vægt en sti kan have der forbinder $T_1$ og $T_2$. Herved, hvis $M$ er et MST i $G'$, så må $k \leq w(x)$ gælde. \\
-Det andet tilfælde kan der argumenteres for, idet det er muligt for generiske MST-algoritme at finde $M$ i $G'$, idet den kan lave de samme \textit{cuts} der først til $M$ i $G$ - pånær \textit{cut}'et der førte til at tilføje kant $x$ til $M$. Hertil mangler der altså kun et \textit{cut} der forbinder de to træer $T_1$ og $T_2$. Laves der et cut over alle kanterne der forbinder de to træer, vil $x$ altså være det \textit{cut} med den laveste vægt, derved også være en \textit{light edge} og derved blive tilføjet til $M$. Ergo er det muligt for den generiske MST-algortime at finde $M$ i $G'$.
+Det andet tilfælde kan der argumenteres for, idet det er muligt for den generiske MST-algoritme at finde $M$ i $G'$, idet den kan lave de samme \textit{cuts} der førte til $M$ i $G$ - pånær \textit{cut}'et der førte til at tilføje kant $x$ til $M$. Hertil mangler der altså kun en kant der forbinder de to træer $T_1$ og $T_2$. Laves der et cut over alle kanterne der forbinder de to træer, vil $x$ altså være det \textit{cut} med den laveste vægt, derved også være en \textit{light edge} og derved blive tilføjet til $M$. Ergo er det muligt for den generiske MST-algortime at finde $M$ i $G'$.
+
+\newpage
+
+\subsection*{Del 4.5}
+Egenskaben kan beskrives ved uligheden:
+$$k \geq w(x)$$
+Der kan argumenteres for, at det første tilfælde gælder, idet vi ved at $x$ ikke er med $M$ idet den tilhørende vægt $w(x)$ er for "stor" til at blive inkluderet i $M$ - hertil gælder det altså, at for alle kanter, $y$, der forbinder de samme træer hvor $w(y) \geq w(x)$ gælder det altså også her, at vægten $w(y)$ er for står til at være med i $M$. \\
+Ligesom i den forrige delopgave, kan der argumenteres fr, idet det er muligt for den generiske MST-aglrotime at finde $M$ i $G'$, idet den kan lave de samme \textit{cuts} der førte til $M$ i $G$ - pånær \textit{cut}'et der første til at tilføje kant $x$ til $M$. Hertil mangler der altså én kant til at forbinde de to træer $T_1$ og $T_2$. Laves der et cut over all kanterne der forbinder de to træer, vil $x$ aldrig være den kant med den laveste vægt, og vil derfor ikke blive tilføjet til $M$. Istedet vil den finde den kant der har den laveste vægt, hvilket også findes i $M$. Ergo, finder den altså frem til $M$.
+
 \end{document}
