@@ -60,4 +60,10 @@ Ved \textit{top-down} løses problemerne rekursivt. Når et delproblem er løst,
 Ved \textit{bottom-up} løses delproblemerne efter stigende størrelse efterfulgt af at gemme løsningen til disse delproblemer i hukommelsen. Herved, når et algoritmen støder på et nyt delproblem, er de delproblemer som den består af allerede løst. \\
 Sammenlignes de to fremgangsmåder, så er det tydeligt, at de har sine fordele. \textit{top-down} har den fordel, at den kun løser den delproblemer der er nødvendige for de aktuelle problem - modsat \textit{bottom-up}, der løser alle delproblemer. På den anden side, så undgår \textit{top-down} rekursion, hvilket generelt resulterer i mindre konstantfaktorer i køretiden.
 
+\newpage
+
+\subsection*{Del 2.2}
+Det er tydeligt, at rekursionsformlen er korrekt, idet den kører rekursivt igennem alle de mulige snit som der kan lægges på pladen og hertil finder ud af hvilke af disse snit der giver den største fortjeneste. Hertil finder rekursionsformlen altså den optimale løsning til alle de mulige delproblemer, som den finder ved at finde den optimale løsning til alle deldelproblemerne osv... Herved opnår problemet optimal delstruktur. \\
+Hertil er det muligt at se, at $r_{b, h, s} = p_{b, h}$ når $b = h = 1$, idet det ikke er muligt at lægge et snit i pladen, så delpladerne har en heltalsbredde og heltalshøjde, samt $1 < b$ og $1 < h$. Det vil altså sige, at den eneste muligt i rekursionsformlen er, at returnere fortjenesten når der ikke skæres i pladen, altså, når $r_{b, h, s} = p_{b, h}$.
+
 \end{document}
