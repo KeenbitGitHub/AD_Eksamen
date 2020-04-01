@@ -18,7 +18,7 @@
 En Fibonacci heap, $H$, er en mængde af rodfæstede træer der overholder \textit{min-heap property}'en - at nøglen i en knude er større eller lig med forældrens nøgle, hvilket resulterer i, at én af knuderne har den mindste nøgle med den mindste værdi i hele heap'en - den såkaldte  \textit{minimum node}. Vi tilgår en Fibonnaci heap med pointer'en \textit{H.min}, der pejer til denne  \textit{minimum node}. Træernes rødder har pejerene \textit{left} og \textit{right} der henholdsvis pejer til rødderne for træerne til højre og venstre for sig selv - dette skaber den såkaldte \textit{root list}. \\
 Alle knuder har en pejer, \textit{p}, til sin forældre og en pejer, \textit{child}, til ét af sine børn; børnene er sammensat i en \textit{circular, doubly linked list}, hvilket herved gør det muligt for forældren at tilgå enhver af sine børn. Alle børn har pejerne \textit{left} og \textit{right}, der ved hjælp af den \textit{circular, doubly linked list} pejer til barnets højre og venstre søskene. Herudover har alle knuder attributen \textit{degree}, der beskriver antallet af børn som knuden har. \\
 Herudover har alle knuder attributen \textit{mark}, der indikerer om en knude har mistet et barn siden knuden selv var lavet til et barn af en anden knude - dog bliver rodknuder ikke markeret, hvis når den mister et barn. En knude bliver \textit{unmarked} når den bliver lavet til et barn af en anden knude (hvilket kan ske når den mister sit andet barn), samt når den bliver skabt. \\
-Fibonnaci heaps er en meget effektiv datastruktur, idet størstedelen af operationerne i amortiseret køretid kører i konstant tid - de eneste operationer der ikke kører i konstant tid er \texttt{EXTRACT-MIN} og \texttt{DELETE}, der har køretiderne $O(\lg n)$ og $O(\lg n)$ amortiseret køretid. Herved egner datastruktureren sig godt til algoritmer der anvender datastrukturerens operationer mange gange - og særlig godt, hvis \texttt{EXTRACT-MIN} og \texttt{DELETE} ikke anvendes særlig mange gange. Dette ses eksempelvis fra pensum i Prims algoritme og i Dijkstras algoritme. \\
+Fibonnaci heaps er en meget effektiv datastruktur, idet størstedelen af operationerne i amortiseret køretid kører i konstant tid - de eneste operationer der ikke kører i konstant tid er \texttt{EXTRACT-MIN} og \texttt{DELETE}, der begge har $O(\lg n)$ amortiseret køretid. Herved egner datastruktureren sig godt til algoritmer der anvender datastrukturerens operationer mange gange - og særlig godt, hvis \texttt{EXTRACT-MIN} og \texttt{DELETE} ikke anvendes særlig mange gange. Dette ses eksempelvis fra pensum i Prims algoritme og i Dijkstras algoritme. \\
 Ved brugen af binære heaps har Prims algoritme en køretid på $O(E \lg V)$. Anvender algoritmen dog Fibonnaci heaps istedet, får algoritmen en køretid på $O(E + V \lg V)$, hvilket er bedre end implementationen med binære heaps, hvis tilfældet er, at antallet af knuder er meget mindre end antallet af kanter. \\
 Dijkstras køretid afhænger af hvordan \textit{min-priorty} køen bliver implementeret - implementeres den ved hjælp af Fibonnaci heaps, bliver køretiden $O(V \lg V + E)$ - meget bedre end andre implementationers køretid, som for eksempel $O(V^2)$. Dette skyldes, at algoritmen generelt kalder \texttt{DECREASE-KEY} mange flere gange, end algoritmen kalder \texttt{EXTRACT-MIN}.
 
@@ -42,7 +42,7 @@ Algoritmen fungerer ved at iterere igennem array $A$ indtil der findes en indgan
 \subsection*{Del 1.3}
 Worst-case for algoritmen er hvis algoritmen får givet et array, hvor alle indgange er 9, altså hvor $A[i] = 9$ for $i = 0, 1, ..., 9$. Herved er while-loop'et i linje 2 nødt til at itere igennem hele array'et, hvilket giver en køretid på $O(k)$. \\
 Acconting metoden til at vise den amortiserede køretid for \texttt{INCREMENT} kan vises, ved at lade de amortiserede omkostninger for at sætte et ciffer til 1, til at koste 10 credits - 1 credit bruges til at lægge 1 til cifferet, hvorimod de 9 overskydende gemmes på cifferet, som bruges til at betale for de næste 9 gange der skal lægges 1 til dette ciffer. Herved vil ethvert tal der ikke er lig 0, have nok credit til at sættes til 0 og der er derved ingen omkostninger ved at sætte et ciffer til 0, idet vi kan bruge de restende credit der ligger på cifferen. \\
-Hertil kan vi bestemme den amortiserede køretid; at lægge 1 til et ciffer, udover hvis dette ciffer giver 1, bliver betalt af det credit der ligger på cifferet. Algoritmen lægger højst 1 til ét ciffer, i linje 6, hvilket betyder, at de amortiserede omkostninger maksimalt kan koste 9 (hvis cifferet går fra 0 til 1). Antallet af ciffer med credit kan ikke være negativt, hvilket betyder, at credit'et aldrig vil være negativt. Herved, ved kald til $n$ kald til \texttt{INCREMENT}, er de amortiserede omkostninger lig $O(n)$.
+Hertil kan vi bestemme den amortiserede køretid; at lægge 1 til et ciffer, udover hvis dette ciffer giver 1, bliver betalt af det credit der ligger på cifferet. Algoritmen lægger højst 1 til ét ciffer, i linje 6, hvilket betyder, at de amortiserede omkostninger maksimalt kan koste 9 (hvis cifferet går fra 0 til 1). Antallet af ciffer med credit kan ikke være negativt, hvilket betyder, at credit'et aldrig vil være negativt. Herved, ved $n$ kald til \texttt{INCREMENT}, er de amortiserede omkostninger lig $O(n)$.
 
 \newpage
 
@@ -55,10 +55,11 @@ Dynamisk Programming minder meget om \textit{Divide-and-Conquer}, idet begge par
     \includegraphics[height = 4 cm]{../entities/DP_fibonacci.PNG}
 \end{center}
 I dette eksempel er det tydeligt, at problemet består af overlappende delproblemer, idet Fibonacci-tallet $F_2$ skal udregnes 2 gange, for at udregne Fibonacci-tallet $F_4$. Ideen med Dynamisk Programmering er hertil at undgå at løse de overlappende delproblemer flere gange. \\
+Det kan være svært at se, om man kan anvende Dynamisk Programmering til at løse et problem. Opnår et problem dog \textit{optimal substructure}; at et den optimale løsning til et problem består af optimale løsninger til delproblemerne, er det oftet muligt at løse problemet med Dynamisk Programmering. \\
 Ved Dynamisk Programmering er der to forskellige fremgangsmåder til, at løse et problem; \textit{top-down} og \textit{bottom-up}. \\
 Ved \textit{top-down} løses problemerne rekursivt. Når et delproblem er løst, gemmes løsningen i hukommelsen og kan nemt slås op, hvis det samme delproblem er mødt igen senere. \\
-Ved \textit{bottom-up} løses delproblemerne efter stigende størrelse efterfulgt af at gemme løsningen til disse delproblemer i hukommelsen. Herved, når et algoritmen støder på et nyt delproblem, er de delproblemer som den består af allerede løst. \\
-Sammenlignes de to fremgangsmåder, så er det tydeligt, at de har sine fordele. \textit{top-down} har den fordel, at den kun løser den delproblemer der er nødvendige for de aktuelle problem - modsat \textit{bottom-up}, der løser alle delproblemer. På den anden side, så undgår \textit{top-down} rekursion, hvilket generelt resulterer i mindre konstantfaktorer i køretiden.
+Ved \textit{bottom-up} løses delproblemerne efter stigende størrelse efterfulgt af at gemme løsningen til disse delproblemer i hukommelsen. Herved, når algoritmen støder på et nyt delproblem, er de delproblemer som den består af allerede løst. \\
+Sammenlignes de to fremgangsmåder, så er det tydeligt, at de har hver sine fordele. \textit{Top-down} har den fordel, at den kun løser den delproblemer der er nødvendige for de aktuelle problem - modsat \textit{bottom-up}, der løser alle delproblemer. På den anden side, så undgår \textit{top-down} rekursion, hvilket generelt resulterer i mindre konstantfaktorer i køretiden.
 
 \newpage
 
@@ -69,11 +70,33 @@ Hertil er det muligt at se, at $r_{b, h, s} = p_{b, h}$ når $b = h = 1$, idet d
 \newpage
 
 \subsection*{Del 2.3}
+Jeg har designet følgende \textit{top-down} algoritme til at finde $r_{b, h, s}$:
 \begin{verbatim}
-CUT-PLATE(p, b, h, s):
-    MANGLER
+CUT-PLATE(p, b, h, s, r):
+    if (r[b, h, s] >= 0):
+        return r[b, h, s]
+    if (b == h == 1):
+        q = 1
+    else:
+        q = -infinity
+        for i = 1 to b:
+            for j = 1 to h:
+                for s1 = 0 to s:
+                    for s2 = 0 to s:
+                        if (s1 + s2 <= s):
+                            q = max(q, p[b, h], (CUT-PLATE[p, i, h, s1] + 
+                            CUT-PLATE[p, b - i, h, s2]), (CUT-PLATE[b, j, s1] +
+                            CUT-PLATE[b, h - j, s2]))
+    r[b, h, s] = q
+    return q
 \end{verbatim}
 
+Algoritmen fungerer ved, at den rekursivt iterer igennem alle de mulige delproblemer. Her gemmes fortjenesten for hvert delproblem i 3d array'et \texttt{r} med størrelsen $b \cdot h \cdot s$ - dette er også algoritmens pladsforbrug. Støder algoritmen herefter på sammen delproblem igen, kigger den blot i dette array for resultatet. Herved er det muligt at argumentere for korrektheden af algoritmen, idet det her er tydeligt, at algoritmen udnytter \textit{optimal substructure}, idet den bygger løsningen af problem på løsningerne til delproblemerne, da den iterer igennem alle de mulige delproblemer, før den finder løsningen til det nuværende problem. \\
+Algoritmen har en køretid på $O(bh \cdot s^3)$. Dette skyldes, at den har de to \textit{for-loops} i linje 7 og 8 der giver en køretid på $O(bh)$. Herudover, har den de to \textit{for-loops} i linje 8 og 10, der giver en køretid på $O(s \cdot s) = O(s^2)$. Herudover er der $O(bh \cdot s^2)$ delproblemer, som hver udregnet én gang. Dette giver en køretid på:
+$$O(bh \cdot s^2 + bh \cdot s^2) = O(2 bh \cdot s^2) = O(bh \cdot s^2)$$
+antager vi, at $s = O(bh)$, kan dette redurceres yderligere:
+$$O(bh \cdot s^2) = O(bh \cdot (bh)^2) = O((bh)^3)$$
+Vi kan tillade os at antage at $s = O(bh)$, idet der højst er $bh$ måder vi kan opdele en plade. \\
 \newpage
 
 % ####################################### OPGAVE 3 #################################
@@ -124,7 +147,7 @@ Vi kan implementere algoritmen, ved at skabe et \textit{min-heap}, hvor nøglern
 \newpage
 
 \subsection*{Del 3.4}
-Ja, $B(T) = \sum_{c \in C} c.freq \cdot d_T(c)$ udtrykker stadig længden af den komprimerede streng. Dette skyldes, at for $c \in C$ beskriver $c.freq$ antallet af gange vi går ned igennem træet til bladet hvor knuden $c$ befinder sig i, samt $d_T(c)$ beskriver hvor langt ned der er til dette bladet. Summeres dette over alle bogstaver, har vi altså hvor langt vi skal bruge for at komme til ethvert bogstav, samt hvor mange gange vi skal ned af træet, for at komme til hvert bogstav.
+Ja, $B(T) = \sum_{c \in C} c.freq \cdot d_T(c)$ udtrykker stadig længden af den komprimerede streng. Dette skyldes, at for $c \in C$ beskriver $c.freq$ antallet af gange vi går ned igennem træet til bladet hvor knuden $c$ befinder sig i, samt $d_T(c)$ beskriver hvor langt ned der er til dette bladet. Summeres dette over alle bogstaver, har vi altså hvor langt vi skal bruge for at komme til ethvert bogstav, samt hvor mange gange vi skal ned af træet, for at komme til hvert bogstav. Alt i alt ændres der ikke på frekvensen af bogstaverne sig ikke, samt $d_T(c)$ beskriver stadig hvor mange tal man skal bruge for at beskrive $c$. Dette vil altså sige, at $B(T)$ ændres der ikke på.
 
 \newpage
 
