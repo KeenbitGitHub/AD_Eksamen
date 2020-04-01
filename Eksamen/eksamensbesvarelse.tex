@@ -75,9 +75,46 @@ CUT-PLATE(p, b, h, s):
 
 \newpage
 
+% ####################################### OPGAVE 3 #################################
+
 \section*{Opgave 3}
 \subsection*{Del 3.1}
 Grådige Algoritmer er en type af algoritmer, der foretager sig den optimale handling i det nuværende tidspunkt, i håb om, at dette fører til det optimale løsning til hele problemet. Ligesom ved Dynamisk Programmering, så afhænger delproblemerne af andre delproblemers løsning, forskellen ligger dog i, at ved Dynamisk Programmering, foretages der et valg efter delproblemerne er løst, hvorimod en Grådige Algoritmer først foretager sig et valg og derefter løser delproblemerne. Samtidigt gælder der også, at efter hvert grådige valg, er der kun ét delproblem tilbage. Oftest er grådige algoritmer hurtigere end algoritmer fra Dynamisk Programmering, dog findes der problemer, som Dynamisk Programmering kan løse, som en Grådig Algoritme ikke kan løse. \\ 
 Det kan være svært, at forudse, om et problem kan løses ved hjælp af en Grådig Algoritme. Dog, hvis et problem opnår \textit{greedy-choice property} og \textit{optimal substructure} er det muligt at løse problemet ved hjælp af en Grådig algoritme. \\
 \textit{Greedy-choice property} går i sin helhed ud på, at der findes en optimal løsning til problemet, der indeholder det grådige valg. Modsat, så går \textit{optimal substructure} ud på, at hvis det grådige valg er en del af den optimale løsning til problemet, så er den optimale løsning til problemet bestående af det grådige valg og den optimale løsning til delproblemet efter det grådige valg. Alt i alt, så vil en kombination af \textit{optimal substructure} og \textit{greedy choice property} medføre, at den Grådige Algoritme finder en optimal løsning til problemet.
+
+\newpage 
+
+\subsection*{Del 3.2}
+Af hensyn til klarheden af håndkørlsen, opstiller jeg først her de forskellige elementer:
+\begin{center}
+    \includegraphics[height = 5 cm]{../entities/huffman1.PNG}
+\end{center}
+Herefter tages først de 3 knuder med lavest frekvens. Disse tre knuder bliver samlet i et træ og sumen af deres frekvenser bliver indskrevet i roden:
+\begin{center}
+    \includegraphics[height = 5 cm]{../entities/huffman2.PNG}
+\end{center}
+Herefter tages de 3 næste knuder med lavest frekvens. Også disse tre knuder bliver samlet i et træ og sumen af deres frekvenser bliver også indskrevet i roden:
+\begin{center}
+    \includegraphics[height = 5 cm]{../entities/huffman3.PNG}
+\end{center}
+Hertil tager jeg igen de tre knuder med lavest frekvens. I dette tilfældet er det bogstavet \textit{g} og de to træer fra de forrige to iterationer. Disse samles til et nyt træ, og sumen af deres frekvens skrives i roden.
+\begin{center}
+    \includegraphics[height = 5 cm]{../entities/huffman4.PNG}
+\end{center}
+Til sidst får hver kant tilskrevet en vægt. 0 betyder "pej til barn nummer 0", 1 betyder "pej til barn nummer 1" og 2 betyder "pej til barn nummer 2".
+\begin{center}
+    \includegraphics[height = 5 cm]{../entities/huffman5.PNG}
+\end{center}
+Alt i alt har de forskellige bogstaver følgende prefix-kode:
+\begin{itemize}
+    \item \textit{a}: 20
+    \item \textit{b}: 21
+    \item \textit{c}: 22
+    \item \textit{d}: 10
+    \item \textit{e}: 11
+    \item \textit{f}: 12
+    \item \textit{g}: 0
+\end{itemize}
+
 \end{document}
