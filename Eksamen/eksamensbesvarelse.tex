@@ -198,7 +198,7 @@ Alt i alt ser det minimum udspændende træ ud som følgende:
 \newpage
 
 \subsection*{Del 4.2}
-Det kan tydeligt vises ved et eksempel, at hvis væten af kanten $(d, f)$ ændres til 6, så vil $T$ ikke længere være et MST i $H$. Jeg vælger her at sprænge frem til den iteration, hvor kant $(d, f)$ ikke bliver taget med i den aktuelle minimum udspændede skov:
+Det kan tydeligt vises ved et eksempel, at hvis væten af kanten $(d, f)$ ændres til 6, så vil $T$ ikke længere være et MST i $H$. Jeg vælger her at hoppe frem til den iteration, hvor kant $(d, f)$ ikke bliver taget med i den aktuelle minimum udspændede skov:
 \begin{center}
     \includegraphics[height = 5 cm]{../entities/new_kruskal1}
 \end{center}
@@ -206,10 +206,18 @@ Det er tydeligt at se her, at kanten $(d, f)$ ikke vil blive inkluderet i MST i 
 \begin{center}
     \includegraphics[height = 5 cm]{../entities/new_kruskal2}
 \end{center}
-vil ikke er lig $T$
+vilket ikke er lig $T$
 
 \newpage
 
-
-
+\subsection*{Del 4.3}
+Ligesom ved delopgave 4.2 er det også tydeligt at vise ved hjælp af et eksempel, at hvis vægten af kant $(b, c)$ sættes til 3, så vil $T$ ikke længere være et MST i $H$. Nedenunder ses den iteration, hvor  $(b, c)$ bliver taget med i den aktuelle minimum udspændede skov, vilket den ellers ikke gør i $T$:
+\begin{center}
+    \includegraphics[height = 5 cm]{../entities/new_new_kruskal1}
+\end{center}
+Her er det tydeligt at se, at kanten $(b, c)$ faktisk bliver tilføjet til den aktuelle minimum udspændede skov, idet den er den kant med den mindste vægt der ikke er blevet betragtet endnu, samt den ikke skaber nogle cykler. Dette resulterer i, at algoritmen terminerer med følgende MST i $H$:
+\begin{center}
+    \includegraphics[height = 5 cm]{../entities/new_new_kruskal2}
+\end{center}
+vilket ikke er lig $T$.
 \end{document}
