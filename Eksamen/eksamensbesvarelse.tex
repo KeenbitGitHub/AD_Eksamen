@@ -59,7 +59,7 @@ Det kan være svært at se, om man kan anvende Dynamisk Programmering til at lø
 Ved Dynamisk Programmering er der to forskellige fremgangsmåder til, at løse et problem; \textit{top-down} og \textit{bottom-up}. \\
 Ved \textit{top-down} løses problemerne rekursivt. Når et delproblem er løst, gemmes løsningen i hukommelsen og kan nemt slås op, hvis det samme delproblem er mødt igen senere. \\
 Ved \textit{bottom-up} løses delproblemerne efter stigende størrelse efterfulgt af at gemme løsningen til disse delproblemer i hukommelsen. Herved, når algoritmen støder på et nyt delproblem, er de delproblemer som den består af allerede løst. \\
-Sammenlignes de to fremgangsmåder, så er det tydeligt, at de har hver sine fordele. \textit{Top-down} har den fordel, at den kun løser den delproblemer der er nødvendige for de aktuelle problem - modsat \textit{bottom-up}, der løser alle delproblemer. På den anden side, så undgår \textit{top-down} rekursion, hvilket generelt resulterer i mindre konstantfaktorer i køretiden.
+Sammenlignes de to fremgangsmåder, så er det tydeligt, at de har hver sine fordele. \textit{Top-down} har den fordel, at den kun løser den delproblemer der er nødvendige for de aktuelle problem - modsat \textit{bottom-up}, der løser alle delproblemer. På den anden side, så undgår \textit{bottom-up} rekursion, hvilket generelt resulterer i mindre konstantfaktorer i køretiden.
 
 \newpage
 
@@ -92,7 +92,7 @@ CUT-PLATE(p, b, h, s, r):
 \end{verbatim}
 
 Algoritmen fungerer ved, at den rekursivt iterer igennem alle de mulige delproblemer. Her gemmes fortjenesten for hvert delproblem i 3d array'et \texttt{r} med størrelsen $b \cdot h \cdot s$ - dette er også algoritmens pladsforbrug. Støder algoritmen herefter på sammen delproblem igen, kigger den blot i dette array for resultatet. Herved er det muligt at argumentere for korrektheden af algoritmen, idet det her er tydeligt, at algoritmen udnytter \textit{optimal substructure}, idet den bygger løsningen af problem på løsningerne til delproblemerne, da den iterer igennem alle de mulige delproblemer, før den finder løsningen til det nuværende problem. \\
-Algoritmen har en køretid på $O(bh \cdot s^3)$. Dette skyldes, at den har de to \textit{for-loops} i linje 7 og 8 der giver en køretid på $O(bh)$. Herudover, har den de to \textit{for-loops} i linje 8 og 10, der giver en køretid på $O(s \cdot s) = O(s^2)$. Herudover er der $O(bh \cdot s^2)$ delproblemer, som hver udregnet én gang. Dette giver en køretid på:
+Algoritmen har en køretid på $O((bh)^3)$. Dette skyldes, at den har de to \textit{for-loops} i linje 7 og 8 der giver en køretid på $O(bh)$. Herudover, har den de to \textit{for-loops} i linje 8 og 10, der giver en køretid på $O(s \cdot s) = O(s^2)$. Herudover er der $O(bh \cdot s^2)$ delproblemer, som hver bliver udregnet én gang. Dette giver en køretid på:
 $$O(bh \cdot s^2 + bh \cdot s^2) = O(2 bh \cdot s^2) = O(bh \cdot s^2)$$
 antager vi, at $s = O(bh)$, kan dette redurceres yderligere:
 $$O(bh \cdot s^2) = O(bh \cdot (bh)^2) = O((bh)^3)$$
@@ -104,7 +104,8 @@ Vi kan tillade os at antage at $s = O(bh)$, idet der højst er $bh$ måder vi ka
 \section*{Opgave 3}
 \subsection*{Del 3.1}
 Grådige Algoritmer er en type af algoritmer, der foretager sig den optimale handling i det nuværende tidspunkt, i håb om, at dette fører til det optimale løsning til hele problemet. Ligesom ved Dynamisk Programmering, så afhænger delproblemerne af andre delproblemers løsning, forskellen ligger dog i, at ved Dynamisk Programmering, foretages der et valg efter delproblemerne er løst, hvorimod en Grådige Algoritmer først foretager sig et valg og derefter løser delproblemerne. Samtidigt gælder der også, at efter hvert grådige valg, er der kun ét delproblem tilbage. Oftest er grådige algoritmer hurtigere end algoritmer fra Dynamisk Programmering, dog findes der problemer, som Dynamisk Programmering kan løse, som en Grådig Algoritme ikke kan løse. \\ 
-Det kan være svært, at forudse, om et problem kan løses ved hjælp af en Grådig Algoritme. Dog, hvis et problem opnår \textit{greedy-choice property} og \textit{optimal substructure} er det muligt at løse problemet ved hjælp af en Grådig algoritme. \\
+Det kan være svært,
+ at forudse, om et problem kan løses ved hjælp af en Grådig Algoritme. Dog, hvis et problem opnår \textit{greedy-choice property} og \textit{optimal substructure} er det muligt at løse problemet ved hjælp af en Grådig algoritme. \\
 \textit{Greedy-choice property} går i sin helhed ud på, at der findes en optimal løsning til problemet, der indeholder det grådige valg. Modsat, så går \textit{optimal substructure} ud på, at hvis det grådige valg er en del af den optimale løsning til problemet, så er den optimale løsning til problemet bestående af det grådige valg og den optimale løsning til delproblemet efter det grådige valg. Alt i alt, så vil en kombination af \textit{optimal substructure} og \textit{greedy choice property} medføre, at den Grådige Algoritme finder en optimal løsning til problemet.
 
 \newpage 
