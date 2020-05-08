@@ -1,6 +1,6 @@
 # Algoritmer og Datastrukturer - Eksamen
 ## Introduktion
-Følgende repository indeholder opgavebeskrivelsen og min opgavebesvarelse af eksamen i kruset Algoritmer og Datastrukturer fra DIKU, 2020. Normalt afholdes kurset som en mundligeksamen, dog grundet COVID-19, blev eksamen omformet til en 24-timers eksamen.
+Følgende repository indeholder opgavebeskrivelsen og min opgavebesvarelse af eksamen i kurset [Algoritmer og Datastrukturer](https://kurser.ku.dk/course/ndaa04010u/2019-2020) fra DIKU, 2020. Normalt afholdes kurset som en mundligeksamen, dog grundet COVID-19, blev eksamen omformet til en 24-timers eksamen.
 
 ## Baggrund
 [Eksamen/Eksamensopgave.pdf](./Eksamen/Eksamensopgave.pdf) indeholder den stillede eksamensopgave.
